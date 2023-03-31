@@ -1,4 +1,4 @@
-package ssit.grupo12.api;
+package io.mahesh.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

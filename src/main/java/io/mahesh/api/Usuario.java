@@ -1,4 +1,4 @@
-package ssit.grupo12.api;
+package io.mahesh.api;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class User {
+public class Usuario {
     @Id
     @GeneratedValue
     Integer id;
@@ -20,5 +20,5 @@ public class User {
     String fecha_nacimiento;
     Integer actividad_diaria;
     Integer isAdmin;
-    String password;
+    String contraseña;
 }

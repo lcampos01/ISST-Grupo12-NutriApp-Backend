@@ -8,10 +8,10 @@
 		<version>2.3.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>ssit.grupo12</groupId>
-	<artifactId>nutriApp</artifactId>
-	<version>0.0.1</version>
-	<name>nutriApp</name>
+	<groupId>io.mahesh</groupId>
+	<artifactId>api</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>api</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -26,10 +26,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-    		<groupId>org.springframework.boot</groupId>
-    		<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
 		<dependency>
