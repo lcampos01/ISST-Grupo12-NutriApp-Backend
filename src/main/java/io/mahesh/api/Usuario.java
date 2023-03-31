@@ -11,14 +11,14 @@ import lombok.Data;
 public class Usuario {
     @Id
     @GeneratedValue
-    Integer Id;
-    String Nombre;
-    String Email;
-    Integer Altura;
-    Integer Peso;
-    String Sexo;
-    String Fecha_nacimiento;
-    Integer Actividad_diaria;
-    Integer IsAdmin;
-    String Contraseña;
+    Integer id;
+    String nombre;
+    String email;
+    Integer altura;
+    Integer peso;
+    String sexo;
+    String fecha_nacimiento;
+    Integer actividad_diaria;
+    Integer isAdmin;
+    String contraseña;
 }

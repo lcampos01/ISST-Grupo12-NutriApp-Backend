@@ -18,7 +18,7 @@ public class UsuarioController {
     }
     @PostMapping("/login")
     public Usuario Login(@RequestBody Usuario usuario) {
-        Usuario Usuario_antiguo = usuarioRepository.findByEmailAndPassword(usuario.Email, usuario.Contraseña);
+        Usuario Usuario_antiguo = usuarioRepository.findByEmailAndContraseña(usuario.email, usuario.contraseña);
         return Usuario_antiguo;
     }
 }
