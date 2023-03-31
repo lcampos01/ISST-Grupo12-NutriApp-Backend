@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Usuario {
+public class User {
     @Id
     @GeneratedValue
     Integer id;
@@ -20,5 +20,5 @@ public class Usuario {
     String fecha_nacimiento;
     Integer actividad_diaria;
     Integer isAdmin;
-    String contraseña;
+    String password;
 }
