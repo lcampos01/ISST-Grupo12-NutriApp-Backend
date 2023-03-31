@@ -1,4 +1,4 @@
-package io.mahesh.api;
+package ssit.grupo12.api;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

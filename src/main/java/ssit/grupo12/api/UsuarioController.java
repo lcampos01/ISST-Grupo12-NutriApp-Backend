@@ -1,4 +1,4 @@
-package io.mahesh.api;
+package ssit.grupo12.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

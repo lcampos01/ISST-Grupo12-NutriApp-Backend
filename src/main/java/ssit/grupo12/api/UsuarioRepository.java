@@ -1,4 +1,4 @@
-package io.mahesh.api;
+package ssit.grupo12.api;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
