@@ -14,13 +14,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 
 public class TokenUtils {
 
-    private final static String ACCESS_TOKEN_SECRET = "jPMVexdcmXCtXnIEQXGXPwxqpjUPlf";
+    private final static String ACCESS_TOKEN_SECRET = "jPMVexdcmXCtXnIEQXGXPwxqpjUPlfdfsdfsdfsdfsdfsdfsd";
     private final static Long ACCES_TOKEN_VALIDITY_SECONDS = 2_592_000L;
 
     public static String createToken(String nombre, String email){
         long expirationTime = ACCES_TOKEN_VALIDITY_SECONDS * 1000;
         Date expirationDate = new Date(System.currentTimeMillis() + expirationTime);
-
+        
         Map<String, Object> extra = new HashMap<>();
         extra.put("nombre", nombre);
         return Jwts.builder()

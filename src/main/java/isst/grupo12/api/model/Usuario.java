@@ -10,9 +10,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Bean
 public class Usuario {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

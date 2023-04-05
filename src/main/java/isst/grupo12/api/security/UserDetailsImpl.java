@@ -11,7 +11,7 @@ import isst.grupo12.api.model.Usuario;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-@Service("userDetailsService")
+// @Service("userDetailsService")
 public class UserDetailsImpl implements UserDetails{
     
     private final Usuario usuario;
