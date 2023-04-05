@@ -10,6 +10,7 @@ import lombok.Data;
 
 @Entity
 @Data
+@Bean
 public class Usuario {
 
 
@@ -23,4 +24,6 @@ public class Usuario {
     private String movil;
 
     private String email;
+
+    private String password;
 }
