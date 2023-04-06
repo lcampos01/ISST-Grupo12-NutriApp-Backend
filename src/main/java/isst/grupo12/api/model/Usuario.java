@@ -24,4 +24,10 @@ public class Usuario {
     private String email;
 
     private String password;
+    private Integer altura;
+    private Integer peso;
+    private String sexo;
+    private String fecha_nacimiento;
+    private Integer actividad_diaria;
+    private Integer isAdmin;
 }
