@@ -5,21 +5,13 @@ import isst.grupo12.api.model.Usuario;
 import isst.grupo12.api.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import java.net.URL;
 import org.springframework.security.core.Authentication;
-import java.net.HttpURLConnection;
 
 @RestController
 @AllArgsConstructor
@@ -28,14 +20,14 @@ public class UserController {
     private final UsuarioRepository usuarioRepository;
 
     @GetMapping("/currentuser")
-    public ResponseEntity currentUserName(Authentication authentication) {
+    public ResponseEntity<Usuario> currentUserName(Authentication authentication) {
         return usuarioRepository.findOneByEmail(authentication.getName()).map(usuario -> {
             return ResponseEntity.ok().body(usuario);
         }).orElse(new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND));
     }
 
     @PutMapping("/modify-user")
-    public ResponseEntity updateUser(@RequestBody Usuario Usuario, Authentication authentication) {
+    public ResponseEntity<Usuario> updateUser(@RequestBody Usuario Usuario, Authentication authentication) {
         return usuarioRepository.findOneByEmail(authentication.getName()).map(usuario -> {
             usuario.setNombre(Usuario.getNombre());
             usuario.setAltura(Usuario.getAltura());
