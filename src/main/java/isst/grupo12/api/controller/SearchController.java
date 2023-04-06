@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import java.net.URL;
-
+import org.springframework.security.core.Authentication;
 import java.net.HttpURLConnection;
 
 
@@ -29,11 +29,10 @@ public class SearchController {
     @Autowired
     private final UsuarioRepository usuarioRepository;
 
-    @PutMapping("/modify-user/{id}")
-    public ResponseEntity updateUser(@PathVariable Integer id, @RequestBody Usuario Usuario) {
-        return usuarioRepository.findById(id).map(usuario -> {
+    @PutMapping("/modify-user")
+    public ResponseEntity updateUser(@RequestBody Usuario Usuario, Authentication authentication) {
+        return usuarioRepository.findOneByEmail(authentication.getName()).map(usuario -> {
             usuario.setNombre(Usuario.getNombre());
-            usuario.setEmail(Usuario.getEmail());
             usuario.setAltura(Usuario.getAltura());
             usuario.setPeso(Usuario.getPeso());
             usuario.setSexo(Usuario.getSexo());
@@ -63,6 +62,13 @@ public class SearchController {
         catch(Exception e){
             return new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/currentuser")
+    public ResponseEntity currentUserName(Authentication authentication) {
+        return usuarioRepository.findOneByEmail(authentication.getName()).map(usuario -> {
+            return ResponseEntity.ok().body(usuario);
+        }).orElse(new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/search-product/search/{product_category}")

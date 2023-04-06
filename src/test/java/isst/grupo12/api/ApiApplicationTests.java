@@ -1,4 +1,4 @@
-package io.mahesh.api;
+package isst.grupo12.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
