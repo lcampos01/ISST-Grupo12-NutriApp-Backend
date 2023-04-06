@@ -26,24 +26,6 @@ import java.net.HttpURLConnection;
 @AllArgsConstructor
 public class SearchController {
 
-    @Autowired
-    private final UsuarioRepository usuarioRepository;
-
-    @PutMapping("/modify-user")
-    public ResponseEntity updateUser(@RequestBody Usuario Usuario, Authentication authentication) {
-        return usuarioRepository.findOneByEmail(authentication.getName()).map(usuario -> {
-            usuario.setNombre(Usuario.getNombre());
-            usuario.setAltura(Usuario.getAltura());
-            usuario.setPeso(Usuario.getPeso());
-            usuario.setSexo(Usuario.getSexo());
-            usuario.setFecha_nacimiento(Usuario.getFecha_nacimiento());
-            usuario.setActividad_diaria(Usuario.getActividad_diaria());
-            usuario.setIsAdmin(Usuario.getIsAdmin());
-            usuarioRepository.save(usuario);
-            return ResponseEntity.ok().body(usuario);
-        }).orElse(new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND));
-    }
-
     @GetMapping("/search-product/scan/{codigo}")
     public ResponseEntity getScanning(@PathVariable(value = "codigo") String codigo) {
         try{
@@ -64,12 +46,6 @@ public class SearchController {
         }
     }
 
-    @GetMapping("/currentuser")
-    public ResponseEntity currentUserName(Authentication authentication) {
-        return usuarioRepository.findOneByEmail(authentication.getName()).map(usuario -> {
-            return ResponseEntity.ok().body(usuario);
-        }).orElse(new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND));
-    }
 
     @GetMapping("/search-product/search/{product_category}")
     public ResponseEntity getSearch(@PathVariable(value = "product_category") String product_category) {
