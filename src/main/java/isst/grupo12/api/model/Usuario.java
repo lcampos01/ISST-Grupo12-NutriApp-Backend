@@ -17,13 +17,12 @@ public class Usuario {
     @Column(name = "idusuario")
     private Integer id;
 
-    private String nombre;
-
-    private String movil;
 
     private String email;
 
     private String password;
+
+    private String nombre;
     private Integer altura;
     private Integer peso;
     private String sexo;

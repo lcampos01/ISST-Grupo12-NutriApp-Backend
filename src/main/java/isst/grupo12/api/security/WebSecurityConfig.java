@@ -36,6 +36,7 @@ public class WebSecurityConfig {
         return http
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/signup").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

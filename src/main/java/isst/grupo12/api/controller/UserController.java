@@ -5,19 +5,46 @@ import isst.grupo12.api.model.Usuario;
 import isst.grupo12.api.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @RestController
 @AllArgsConstructor
 public class UserController {
     @Autowired
     private final UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @PostMapping("/signup")
+    public ResponseEntity<Usuario> registration(@RequestBody Usuario usuario) {
+        System.out.println(!usuarioRepository.findOneByEmail(usuario.getEmail()).isEmpty());
+        if(!usuarioRepository.findOneByEmail(usuario.getEmail()).isEmpty()) {
+            return new ResponseEntity<Usuario>(HttpStatus.BAD_REQUEST);
+        }
+        Usuario nuevoUsuario = new Usuario();
+        nuevoUsuario.setNombre(usuario.getNombre());
+        nuevoUsuario.setEmail(usuario.getEmail());
+        nuevoUsuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+        nuevoUsuario.setAltura(usuario.getAltura());
+        nuevoUsuario.setPeso(usuario.getPeso());
+        nuevoUsuario.setSexo(usuario.getSexo());
+        nuevoUsuario.setFecha_nacimiento(usuario.getFecha_nacimiento());
+        nuevoUsuario.setActividad_diaria(usuario.getActividad_diaria());
+        nuevoUsuario.setIsAdmin(0);
+        usuarioRepository.save(nuevoUsuario);
+        return ResponseEntity.ok().body(nuevoUsuario);
+    }
 
     @GetMapping("/currentuser")
     public ResponseEntity<Usuario> currentUserName(Authentication authentication) {
