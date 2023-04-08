@@ -17,16 +17,30 @@ public class Usuario {
     @Column(name = "idusuario")
     private Integer id;
 
-
+    @Column(nullable = false, unique=true)
     private String email;
 
+    @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
     private String nombre;
+
+    @Column(nullable = false)
     private Integer altura;
+
+    @Column(nullable = false)
     private Integer peso;
+
+    @Column(nullable = false)
     private String sexo;
+
+    @Column(nullable = false)
     private String fecha_nacimiento;
+
+    @Column(nullable = false)
     private Integer actividad_diaria;
+
+    @Column(nullable = false)
     private Integer isAdmin;
 }
