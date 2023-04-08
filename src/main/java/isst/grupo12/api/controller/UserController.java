@@ -28,7 +28,7 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity<Usuario> registration(@RequestBody Usuario usuario) {
-        System.out.println(!usuarioRepository.findOneByEmail(usuario.getEmail()).isEmpty());
+        // System.out.println(!usuarioRepository.findOneByEmail(usuario.getEmail()).isEmpty());
         if(!usuarioRepository.findOneByEmail(usuario.getEmail()).isEmpty()) {
             return new ResponseEntity<Usuario>(HttpStatus.BAD_REQUEST);
         }
