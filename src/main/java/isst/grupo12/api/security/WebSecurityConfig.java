@@ -37,6 +37,8 @@ public class WebSecurityConfig {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/signup").permitAll()
+                .antMatchers("/search-product/search/{product_category}").permitAll()
+                .antMatchers("/search-product/scan/{codigo}").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
