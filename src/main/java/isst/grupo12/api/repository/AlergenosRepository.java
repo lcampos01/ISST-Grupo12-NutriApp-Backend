@@ -7,5 +7,7 @@ import isst.grupo12.api.model.Alergenos;
 
 @Repository
 public interface AlergenosRepository extends JpaRepository<Alergenos, Integer>{
+
+    Object findOneByUsuario(Integer id);
     
 }
