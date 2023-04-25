@@ -1,10 +1,13 @@
 package isst.grupo12.api.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import lombok.Data;
 
@@ -36,4 +39,8 @@ public class Usuario {
     private Integer actividad_diaria;
 
     private Integer isAdmin;
+
+    @ManyToMany(mappedBy = "usuarios")
+    private List<Alimentos> alimentos;
+    
 }
