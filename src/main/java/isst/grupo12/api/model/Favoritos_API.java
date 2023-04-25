@@ -22,8 +22,7 @@ public class Favoritos_API {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", nullable = false)
-    @Column()
-    private Integer idusuario;
+    private Usuario usuario;
 
     @Column(nullable = false)
     private String url_alimento;

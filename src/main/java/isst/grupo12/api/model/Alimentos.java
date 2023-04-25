@@ -27,8 +27,7 @@ public class Alimentos {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", nullable = false)
-    @Column()
-    private Integer idusuario;
+    private Usuario usuario;
 
     @Column(nullable = false)
     private String nombre;
@@ -43,7 +42,7 @@ public class Alimentos {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(
-        name = "alimentos_favoritos", joinColumns = @JoinColumn(name = "idalimento"), 
+        name = "alimentos_favoritos", joinColumns = @JoinColumn(name = "idalimento", referencedColumnName = "idalimento"), 
         inverseJoinColumns = @JoinColumn(name = "idusuario")
     )
     private List<Usuario> usuarios;
