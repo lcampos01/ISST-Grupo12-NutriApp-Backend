@@ -32,7 +32,7 @@ public class AlergenosController {
             return new ResponseEntity<List<Alergenos>>(HttpStatus.NOT_FOUND);
         }
         List<Alergenos> alergenos = alergenosRepository.findByusuario_id(usuario.getId());
-
+        
         return ResponseEntity.ok().body(alergenos);
         // .orElse(new ResponseEntity<Alergenos>(HttpStatus.NOT_FOUND));
     }
