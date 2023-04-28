@@ -11,4 +11,5 @@ import isst.grupo12.api.model.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
     
     Optional<Usuario> findOneByEmail(String email);
+    
 }

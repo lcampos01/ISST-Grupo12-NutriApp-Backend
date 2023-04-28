@@ -11,4 +11,5 @@ import isst.grupo12.api.model.Alergenos;
 public interface AlergenosRepository extends JpaRepository<Alergenos, Integer>{
 
     List<Alergenos> findByusuario_id(Integer id);
+    
 }
