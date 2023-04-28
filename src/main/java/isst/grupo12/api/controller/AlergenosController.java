@@ -16,7 +16,6 @@ import org.springframework.security.core.Authentication;
 // import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,21 +34,17 @@ public class AlergenosController {
             return new ResponseEntity<List<Alergenos>>(HttpStatus.NOT_FOUND);
         }
         List<Alergenos> alergenos = alergenosRepository.findByusuario_id(usuario.getId());
-        List<String> alergenos_res = new ArrayList<String>();
-        for (Alergenos alergeno : alergenos) {
-            alergenos_res.add(alergeno.getAlimento_alergeno());
-        }
         return ResponseEntity.ok().body(alergenos);
     }
 
     @PostMapping("/alergenos")
-    public ResponseEntity<Alergenos> postAlergenos(Authentication authentication, @RequestBody String nombre_alergeno) {
+    public ResponseEntity<Alergenos> postAlergenos(Authentication authentication, @RequestBody Alergenos alergeno_req) {
         Usuario usuario = (Usuario)usuarioRepository.findOneByEmail(authentication.getName()).orElse(null);
         if(usuario == null){
             return new ResponseEntity<Alergenos>(HttpStatus.NOT_FOUND);
         }
         Alergenos alergeno = new Alergenos();
-        alergeno.setAlimento_alergeno(nombre_alergeno);
+        alergeno.setAlimento_alergeno(alergeno_req.getAlimento_alergeno());
         alergeno.setUsuario(usuario);
         alergenosRepository.save(alergeno);
         return ResponseEntity.ok().body(alergeno);
