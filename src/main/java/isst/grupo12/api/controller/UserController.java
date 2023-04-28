@@ -2,6 +2,7 @@ package isst.grupo12.api.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 import isst.grupo12.api.model.Usuario;
+import isst.grupo12.api.model.UsuarioRegistro;
 import isst.grupo12.api.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
 
@@ -25,7 +26,7 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/signup")
-    public ResponseEntity<Usuario> registration(@RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> registration(@RequestBody UsuarioRegistro usuario) {
         // System.out.println(!usuarioRepository.findOneByEmail(usuario.getEmail()).isEmpty());
         if(!usuarioRepository.findOneByEmail(usuario.getEmail()).isEmpty()) {
             return new ResponseEntity<Usuario>(HttpStatus.BAD_REQUEST);
