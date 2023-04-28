@@ -38,16 +38,22 @@ public class AlergenosController {
     }
 
     @PostMapping("/alergenos")
-    public ResponseEntity<Alergenos> postAlergenos(Authentication authentication, @RequestBody Alergenos alergeno_req) {
+    public ResponseEntity<List<Alergenos>> postAlergenos(Authentication authentication, @RequestBody List<Alergenos> alergeno_req) {
         Usuario usuario = (Usuario)usuarioRepository.findOneByEmail(authentication.getName()).orElse(null);
         if(usuario == null){
-            return new ResponseEntity<Alergenos>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<List<Alergenos>>(HttpStatus.NOT_FOUND);
         }
-        Alergenos alergeno = new Alergenos();
-        alergeno.setAlimento_alergeno(alergeno_req.getAlimento_alergeno());
-        alergeno.setUsuario(usuario);
-        alergenosRepository.save(alergeno);
-        return ResponseEntity.ok().body(alergeno);
+        List<Alergenos> old_alergenos = alergenosRepository.findByusuario_id(usuario.getId());
+        for(Alergenos alergeno : old_alergenos){
+            alergenosRepository.delete(alergeno);
+        }
+        List<Alergenos> new_alergenos = alergenosRepository.findByusuario_id(usuario.getId());
+        for(Alergenos alergeno : alergeno_req){
+            alergeno.setUsuario(usuario);
+            new_alergenos.add(alergeno);
+            alergenosRepository.save(alergeno);
+        }
+        return ResponseEntity.ok().body(new_alergenos);
     };
 
 }

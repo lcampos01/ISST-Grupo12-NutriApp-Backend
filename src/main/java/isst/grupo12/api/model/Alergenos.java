@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
@@ -29,6 +28,6 @@ public class Alergenos {
     private Usuario usuario;
 
     @Column(nullable = false)
-    private String alimento_alergeno;
+    private String nombre;
 
 }
