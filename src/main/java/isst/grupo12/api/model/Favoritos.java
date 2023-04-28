@@ -28,6 +28,6 @@ public class Favoritos {
     private Usuario usuario;
 
     @Column(nullable = false)
-    private String url_alimento;
+    private String url;
     
 }
