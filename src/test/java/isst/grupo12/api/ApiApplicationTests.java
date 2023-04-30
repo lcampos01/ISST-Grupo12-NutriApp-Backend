@@ -44,15 +44,15 @@ class ApiApplicationTests {
 		usuarioRepository.save(usuario1);
 
 		Alergenos alergeno1=new Alergenos();
-		alergeno1.setId(12);
-		alergeno1.setAlimento_alergeno("Gluten");
+		alergeno1.setId(1);
+		alergeno1.setNombre("Gluten");
 		alergeno1.setUsuario(usuario1);
 		alergenosrepository.save(alergeno1);
 
 		List<Alergenos> listaAlergias = alergenosrepository.findByusuario_id(1);
 
-		assertEquals(listaAlergias.get(0).getAlimento_alergeno(),"Gluten");
-		assertEquals(listaAlergias.get(0).getId(),12);
+		assertEquals(listaAlergias.get(0).getNombre(),"Gluten");
+		assertEquals(listaAlergias.get(0).getId(),1);
 		assertEquals(listaAlergias.get(0).getUsuario().getId(),1);
 		assertNotEquals(listaAlergias.size(),0);
 

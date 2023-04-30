@@ -1,6 +1,8 @@
 package isst.grupo12.api.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import isst.grupo12.api.model.Alergenos;
 import isst.grupo12.api.model.Usuario;
@@ -32,9 +34,26 @@ public class AlergenosController {
             return new ResponseEntity<List<Alergenos>>(HttpStatus.NOT_FOUND);
         }
         List<Alergenos> alergenos = alergenosRepository.findByusuario_id(usuario.getId());
-        
         return ResponseEntity.ok().body(alergenos);
-        // .orElse(new ResponseEntity<Alergenos>(HttpStatus.NOT_FOUND));
     }
+
+    @PostMapping("/alergenos")
+    public ResponseEntity<List<Alergenos>> postAlergenos(Authentication authentication, @RequestBody List<Alergenos> alergeno_req) {
+        Usuario usuario = (Usuario)usuarioRepository.findOneByEmail(authentication.getName()).orElse(null);
+        if(usuario == null){
+            return new ResponseEntity<List<Alergenos>>(HttpStatus.NOT_FOUND);
+        }
+        List<Alergenos> old_alergenos = alergenosRepository.findByusuario_id(usuario.getId());
+        for(Alergenos alergeno : old_alergenos){
+            alergenosRepository.delete(alergeno);
+        }
+        List<Alergenos> new_alergenos = alergenosRepository.findByusuario_id(usuario.getId());
+        for(Alergenos alergeno : alergeno_req){
+            alergeno.setUsuario(usuario);
+            new_alergenos.add(alergeno);
+            alergenosRepository.save(alergeno);
+        }
+        return ResponseEntity.ok().body(new_alergenos);
+    };
 
 }
