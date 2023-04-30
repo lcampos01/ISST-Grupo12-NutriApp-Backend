@@ -1,10 +1,15 @@
 package isst.grupo12.api.controller;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import isst.grupo12.api.model.Alergenos;
 import isst.grupo12.api.model.Usuario;
 import isst.grupo12.api.model.UsuarioRegistro;
+import isst.grupo12.api.repository.AlergenosRepository;
 import isst.grupo12.api.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +24,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RestController
 @AllArgsConstructor
 public class UserController {
+    @Autowired
+    private final AlergenosRepository alergenosRepository;
+    
     @Autowired
     private final UsuarioRepository usuarioRepository;
 
@@ -42,6 +50,16 @@ public class UserController {
         nuevoUsuario.setActividad_diaria(usuario.getActividad_diaria());
         nuevoUsuario.setIsAdmin(0);
         usuarioRepository.save(nuevoUsuario);
+
+        Usuario usuarioR = (Usuario)usuarioRepository.findOneByEmail(usuario.getEmail()).orElse(null);
+        if(usuarioR == null){
+            return new ResponseEntity<Usuario>(HttpStatus.BAD_REQUEST);
+        }
+        List<Alergenos> alergeno_req = usuario.getAlergenos();
+        for(Alergenos alergeno : alergeno_req){
+            alergeno.setUsuario(usuarioR);
+            alergenosRepository.save(alergeno);
+        }
         return ResponseEntity.ok().body(nuevoUsuario);
     }
 

@@ -25,7 +25,6 @@ public class UsuarioRegistro {
     private Integer actividad_diaria;
 
     private Integer isAdmin;
-
-    private List<Alimentos> alimentos;
     
+    private List<Alergenos> alergenos;
 }
