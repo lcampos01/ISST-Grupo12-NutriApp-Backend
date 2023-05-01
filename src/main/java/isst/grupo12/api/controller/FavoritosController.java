@@ -60,7 +60,7 @@ public class FavoritosController {
             return new ResponseEntity<List<Favoritos>>(HttpStatus.NOT_FOUND);
         }
         String url = favoritos_req.getUrl();
-        Favoritos favorito = (Favoritos)favoritosRepository.findByUsuarioAndUrl(usuario, url).orElse(null);
+        Favoritos favorito = (Favoritos)favoritosRepository.findByUsuario_idAndUrl(usuario.getId(), url).orElse(null);
         if(favorito == null){
             return new ResponseEntity<List<Favoritos>>(HttpStatus.NOT_FOUND);
         }

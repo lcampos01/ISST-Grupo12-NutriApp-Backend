@@ -14,5 +14,5 @@ public interface FavoritosRepository extends JpaRepository<Favoritos, Integer>{
     
     List<Favoritos> findByusuario_id(Integer id);
 
-    Optional<Favoritos> findByUsuarioAndUrl(Usuario usuario, String url_alimento);
+    Optional<Favoritos> findByUsuario_idAndUrl(Integer usuario_id, String url_alimento);
 }
