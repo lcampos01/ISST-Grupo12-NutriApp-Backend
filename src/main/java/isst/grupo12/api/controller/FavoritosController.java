@@ -45,10 +45,9 @@ public class FavoritosController {
             return new ResponseEntity<List<Favoritos>>(HttpStatus.NOT_FOUND);
         }
         
-            Favoritos favorito = new Favoritos();
-            favorito.setUrl(favoritos_req.getUrl());
-            favorito.setUsuario(usuario);
-            favoritosRepository.save(favorito);
+
+            favoritos_req.setUsuario(usuario);
+            favoritosRepository.save(favoritos_req);
         
         return ResponseEntity.ok().body(favoritosRepository.findByusuario_id(usuario.getId()));
     };
@@ -59,8 +58,8 @@ public class FavoritosController {
         if(usuario == null){
             return new ResponseEntity<List<Favoritos>>(HttpStatus.NOT_FOUND);
         }
-        String url = favoritos_req.getUrl();
-        Favoritos favorito = (Favoritos)favoritosRepository.findByUsuario_idAndUrl(usuario.getId(), url).orElse(null);
+        String barcode = favoritos_req.getBarcode();
+        Favoritos favorito = (Favoritos)favoritosRepository.findByUsuario_idAndBarcode(usuario.getId(), barcode).orElse(null);
         if(favorito == null){
             return new ResponseEntity<List<Favoritos>>(HttpStatus.NOT_FOUND);
         }

@@ -28,6 +28,23 @@ public class Favoritos {
     private Usuario usuario;
 
     @Column(nullable = false)
-    private String url;
+    private String barcode;
+
+    private String nombre;
     
+    private String imageUrl;
+
+    private String imageNutriScore;
+
+    private String cantidades;
+
+    private String imageIngredientes;
+
+    private String calorias;
+
+    private String proteinas;
+
+    private String grasas;
+
+    private String carbohidratos;
 }
