@@ -7,7 +7,6 @@ import lombok.Data;
 @Data
 public class UsuarioRegistro {
 
-
     private String email;
 
     private String password;

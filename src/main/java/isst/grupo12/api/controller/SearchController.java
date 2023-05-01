@@ -22,7 +22,7 @@ public class SearchController {
     public ResponseEntity<String> getScanning(@PathVariable(value = "codigo") String codigo) {
         try{
             StringBuilder result = new StringBuilder();
-            URL url = new URL("https://es.openfoodfacts.org/cgi/search.pl?search_terms="+codigo+"&search_simple=1&action=process&json=1");
+            URL url = new URL("https://es.openfoodfacts.org//api/v0/producto/"+codigo+".json");
             HttpURLConnection request = (HttpURLConnection) url.openConnection();
             request.setRequestMethod("GET");
             BufferedReader rd = new BufferedReader(new InputStreamReader(request.getInputStream()));

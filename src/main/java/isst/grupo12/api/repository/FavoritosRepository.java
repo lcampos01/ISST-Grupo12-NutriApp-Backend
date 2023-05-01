@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import isst.grupo12.api.model.Favoritos;
-import isst.grupo12.api.model.Usuario;
 
 @Repository
 public interface FavoritosRepository extends JpaRepository<Favoritos, Integer>{
