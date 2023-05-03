@@ -24,6 +24,10 @@ public class UsuarioRegistro {
     private Integer actividad_diaria;
 
     private Integer isAdmin;
+
+    private String objetivo;
+
+    private Integer num_objetivo;
     
     private List<Alergenos> alergenos;
 }

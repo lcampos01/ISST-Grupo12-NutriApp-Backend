@@ -1,15 +1,12 @@
 package isst.grupo12.api.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.Lob;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
@@ -44,7 +41,11 @@ public class Usuario {
 
     private Integer isAdmin;
 
-    @ManyToMany(mappedBy = "usuarios")
-    private List<Alimentos> alimentos;
+    private String objetivo;
+
+    private Integer num_objetivo;
+
+    @Lob
+    private byte[] imagenPerfil;
     
 }

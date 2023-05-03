@@ -48,6 +48,8 @@ public class UserController {
         nuevoUsuario.setFecha_nacimiento(usuario.getFecha_nacimiento());
         nuevoUsuario.setActividad_diaria(usuario.getActividad_diaria());
         nuevoUsuario.setIsAdmin(0);
+        nuevoUsuario.setObjetivo(usuario.getObjetivo());
+        nuevoUsuario.setNum_objetivo(usuario.getNum_objetivo());
         usuarioRepository.save(nuevoUsuario);
 
         Usuario usuarioR = (Usuario)usuarioRepository.findOneByEmail(usuario.getEmail()).orElse(null);
@@ -79,6 +81,9 @@ public class UserController {
             usuario.setFecha_nacimiento(Usuario.getFecha_nacimiento());
             usuario.setActividad_diaria(Usuario.getActividad_diaria());
             usuario.setIsAdmin(Usuario.getIsAdmin());
+            usuario.setImagenPerfil(Usuario.getImagenPerfil());
+            usuario.setObjetivo(Usuario.getObjetivo());
+            usuario.setNum_objetivo(Usuario.getNum_objetivo());
             usuarioRepository.save(usuario);
             return ResponseEntity.ok().body(usuario);
         }).orElse(new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND));

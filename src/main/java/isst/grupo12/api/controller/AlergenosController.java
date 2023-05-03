@@ -13,7 +13,6 @@ import isst.grupo12.api.repository.AlergenosRepository;
 import isst.grupo12.api.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
-// import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
