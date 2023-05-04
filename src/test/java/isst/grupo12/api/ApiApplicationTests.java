@@ -109,20 +109,20 @@ class ApiApplicationTests {
 
 		Favoritos favorito1=new Favoritos();
 		favorito1.setId(1);
-		favorito1.setUrl("http://www.google.es");
+		favorito1.setBarcode("http://www.google.es");
 		favorito1.setUsuario(usuario1);
 		favoritosRepository.save(favorito1);
 
 		List<Favoritos> listaFavoritos = favoritosRepository.findByusuario_id(1);
 
-		assertEquals(listaFavoritos.get(0).getUrl(),"http://www.google.es");
+		assertEquals(listaFavoritos.get(0).getBarcode(),"http://www.google.es");
 		assertEquals(listaFavoritos.get(0).getId(),1);
 		assertEquals(listaFavoritos.get(0).getUsuario().getId(),1);
 		assertNotEquals(listaFavoritos.size(),0);
 
-		Optional<Favoritos> favoritoTest = favoritosRepository.findByUsuario_idAndUrl(1,"http://www.google.es");
+		Optional<Favoritos> favoritoTest = favoritosRepository.findByUsuario_idAndBarcode(1,"http://www.google.es");
 
-		assertEquals(favoritoTest.get().getUrl(),"http://www.google.es");
+		assertEquals(favoritoTest.get().getBarcode(),"http://www.google.es");
 	
 	}
 
