@@ -34,7 +34,6 @@ public class FavoritosController {
         List<Favoritos> favorito = favoritosRepository.findByusuario_id(usuario.getId());
         
         return ResponseEntity.ok().body(favorito);
-        // .orElse(new ResponseEntity<Alergenos>(HttpStatus.NOT_FOUND));
     }
 
     
@@ -44,11 +43,8 @@ public class FavoritosController {
         if(usuario == null){
             return new ResponseEntity<List<Favoritos>>(HttpStatus.NOT_FOUND);
         }
-        
-
             favoritos_req.setUsuario(usuario);
             favoritosRepository.save(favoritos_req);
-        
         return ResponseEntity.ok().body(favoritosRepository.findByusuario_id(usuario.getId()));
     };
 
@@ -64,7 +60,6 @@ public class FavoritosController {
             return new ResponseEntity<List<Favoritos>>(HttpStatus.NOT_FOUND);
         }
         favoritosRepository.delete(favorito);
-        
         return ResponseEntity.ok().body(favoritosRepository.findByusuario_id(usuario.getId()));
     };
 }

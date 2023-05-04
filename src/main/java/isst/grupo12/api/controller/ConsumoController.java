@@ -36,22 +36,23 @@ public class ConsumoController {
     }
 
     @PostMapping("/consumo")
-    public ResponseEntity<List<Consumo>> postConsumo(Authentication authentication, @RequestBody List<Consumo> consumo_req) {
+    public ResponseEntity<Consumo> postConsumo(Authentication authentication, @RequestBody Consumo consumo_req) {
         Usuario usuario = (Usuario)usuarioRepository.findOneByEmail(authentication.getName()).orElse(null);
         if(usuario == null){
-            return new ResponseEntity<List<Consumo>>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Consumo>(HttpStatus.NOT_FOUND);
         }
-        List<Consumo> old_consumos = consumoRepository.findByusuario_id(usuario.getId());
-        for(Consumo consumo : old_consumos){
-            consumoRepository.delete(consumo);
-        }
-        List<Consumo> new_consumos = consumoRepository.findByusuario_id(usuario.getId());
-        for(Consumo consumo : consumo_req){
-            consumo.setUsuario(usuario);
-            new_consumos.add(consumo);
-            consumoRepository.save(consumo);
-        }
-        return ResponseEntity.ok().body(new_consumos);
+        Consumo consumo = new Consumo();
+        consumo.setUsuario(usuario);
+        consumo.setDia(consumo_req.getDia());
+        consumo.setGrasas(consumo_req.getGrasas());
+        consumo.setCarbohidratos(consumo_req.getCarbohidratos());
+        consumo.setProteinas(consumo_req.getProteinas());
+        consumo.setCalorias(consumo_req.getCalorias());
+        consumo.setMomento(consumo_req.getMomento());
+        consumo.setAlimento(consumo_req.getAlimento());
+        consumo.setCantidad(consumo_req.getCantidad());
+        consumoRepository.save(consumo);
+        return ResponseEntity.ok().body(consumo);
     };
     
 }
