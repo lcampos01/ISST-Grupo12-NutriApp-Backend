@@ -27,7 +27,7 @@ public class UsuarioRegistro {
 
     private String objetivo;
 
-    private Integer num_objetivo;
+    private Double num_objetivo;
     
     private List<Alergenos> alergenos;
 }
