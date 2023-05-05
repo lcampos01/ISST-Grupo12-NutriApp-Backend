@@ -52,7 +52,7 @@ class ApiApplicationTests {
 		usuario1.setIsAdmin(0);
 		usuario1.setPassword("1234");
 		usuario1.setObjetivo("déficit calórico");
-		usuario1.setNum_objetivo(500);
+		usuario1.setNum_objetivo(500.00);
 		usuarioRepository.save(usuario1);
 
 		Alergenos alergeno1=new Alergenos();
@@ -85,7 +85,7 @@ class ApiApplicationTests {
 		usuario1.setIsAdmin(0);
 		usuario1.setPassword("1234");
 		usuario1.setObjetivo("déficit calórico");
-		usuario1.setNum_objetivo(500);
+		usuario1.setNum_objetivo(500.00);
 		usuarioRepository.save(usuario1);
 
 		Optional<Usuario> usuarioTest = usuarioRepository.findOneByEmail("usuariotest@gmail.com");
@@ -109,7 +109,7 @@ class ApiApplicationTests {
 		usuario1.setIsAdmin(0);
 		usuario1.setPassword("1234");
 		usuario1.setObjetivo("déficit calórico");
-		usuario1.setNum_objetivo(500);
+		usuario1.setNum_objetivo(500.00);
 		usuarioRepository.save(usuario1);
 
 		Favoritos favorito1=new Favoritos();
@@ -155,7 +155,7 @@ class ApiApplicationTests {
 		usuario1.setIsAdmin(0);
 		usuario1.setPassword("1234");
 		usuario1.setObjetivo("déficit calórico");
-		usuario1.setNum_objetivo(500);
+		usuario1.setNum_objetivo(500.00);
 		usuarioRepository.save(usuario1);
 
 		Consumo consumo1=new Consumo();
