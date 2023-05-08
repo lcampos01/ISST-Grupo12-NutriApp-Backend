@@ -43,7 +43,7 @@ public class Usuario {
 
     private String objetivo;
 
-    private Double num_objetivo;
+    private double num_objetivo;
 
     @Lob
     private byte[] imagenPerfil;

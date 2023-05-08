@@ -30,13 +30,13 @@ public class Consumo {
     @Column(nullable = false)
     private String dia;
 
-    private Integer grasas;
+    private double grasas;
 
-    private Integer carbohidratos;
+    private double carbohidratos;
 
-    private Integer proteinas;
+    private double proteinas;
 
-    private Integer calorias;
+    private double calorias;
 
     @Column(nullable = false)
     private String momento;
@@ -45,6 +45,6 @@ public class Consumo {
     private String alimento;
 
     @Column(nullable = false)
-    private Integer cantidad;
+    private double cantidad;
     
 }
